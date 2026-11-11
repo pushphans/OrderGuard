@@ -4,6 +4,9 @@ class IncompleteCredentialsError(Exception):
 class UserAlreadyExistsError(Exception):
     pass
 
+class InvalidTokenError(Exception):
+    pass
+
 class InvalidCredentialError(Exception):
     pass
 
@@ -13,14 +16,5 @@ class RefreshTokenExpired(Exception):
 class NotOwnerError(Exception):
     pass
 
-class CartEmptyError(Exception):
-    pass
-
 class InsufficientStockError(Exception):
-    pass
-
-class StockLimitExceededError(Exception):
-    pass
-
-class ProductInUseError(Exception):
     pass

@@ -1,7 +1,6 @@
 from orderguard.auth.router.auth_router import auth_router
 from orderguard.products.router.product_router import product_router
-from orderguard.cart.router.cart_router import cart_router
-from orderguard.orders.router.order_router import order_router
+from orderguard.internal.router.internal_router import internal_router
 from fastapi import FastAPI
 from fastapi import Request
 from fastapi import status
@@ -50,8 +49,7 @@ async def handle_jwt_error(request: Request, exc: PyJWTError):
 
 app.include_router(auth_router)
 app.include_router(product_router)
-app.include_router(cart_router)
-app.include_router(order_router)
+app.include_router(internal_router)
 
 
 @app.get("/")

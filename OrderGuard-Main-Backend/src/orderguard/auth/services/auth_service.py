@@ -19,12 +19,14 @@ from orderguard.auth.model.user_model import UserModel
 from sqlalchemy import select
 from orderguard.auth.schema.auth_schemas import RegisterRequestModel
 from orderguard.auth.schema.auth_schemas import LoginRequestModel
+from orderguard.core.retry import db_retry
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
 
 
 
+@db_retry
 async def register(
     db : AsyncSession,
     data : RegisterRequestModel
@@ -72,6 +74,7 @@ async def register(
         raise
 
 
+@db_retry
 async def login(
     db : AsyncSession,
     data : LoginRequestModel
@@ -93,7 +96,7 @@ async def login(
         user = result.scalar_one_or_none()
 
         if user is None:
-            raise LookupError
+            raise InvalidCredentialError
 
         password_verified = await verify_password(password=data.password, hashed_password=user.password_hash)
 
@@ -150,6 +153,7 @@ async def login(
 
 
 
+@db_retry
 async def refresh_token(
     db : AsyncSession,
     data : RefreshTokenRequestModel

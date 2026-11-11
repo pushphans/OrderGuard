@@ -1,21 +1,19 @@
 from orderguard.auth.model.user_model import UserModel
+from orderguard.core.retry import db_retry
 from sqlalchemy import select
 from orderguard.auth.utils.jwt_utils import decode_token
 from sqlalchemy.ext.asyncio import AsyncSession
 from orderguard.core.db import get_db
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from fastapi import Depends
+from orderguard.core.errors import InvalidTokenError
+from orderguard.core.errors import InvalidCredentialError
 
 security = HTTPBearer(auto_error=False)
 
-class InvalidTokenError(Exception):
-    pass
-
-class InvalidCredentialError(Exception):
-    pass
 
 
-
+@db_retry
 async def get_user(
     credentials: HTTPAuthorizationCredentials = Depends(security),
     db : AsyncSession = Depends(get_db)

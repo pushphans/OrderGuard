@@ -12,8 +12,6 @@ from orderguard.core.config import settings
 from orderguard.auth.model.user_model import UserModel
 from orderguard.auth.model.refresh_token_model import RefreshTokenModel
 from orderguard.products.model.product_model import ProductModel
-from orderguard.cart.model.cart_model import CartItemModel
-from orderguard.orders.model.order_model import OrderModel, OrderItemModel
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

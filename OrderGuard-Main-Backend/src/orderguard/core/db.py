@@ -9,7 +9,8 @@ class Base(DeclarativeBase):
 
 
 engine = create_async_engine(
-    url=settings.DATABASE_URL
+    url=settings.DATABASE_URL,
+    pool_pre_ping=True
 )
 
 

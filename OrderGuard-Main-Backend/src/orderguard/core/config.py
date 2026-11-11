@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     REFRESH_TOKEN_EXPIRY_IN_DAYS : int
     JWT_SECRET_KEY : str
     ALGORITHM : str
+    SERVICE_SECRET : str
 
 
 

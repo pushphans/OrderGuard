@@ -1,6 +1,5 @@
 import uuid
 from orderguard.core.errors import NotOwnerError
-from orderguard.core.errors import ProductInUseError
 from orderguard.products.model.product_model import ProductModel
 from orderguard.products.service.product_service import create_product
 from orderguard.products.service.product_service import get_product
@@ -181,12 +180,6 @@ async def execute_delete_product(
         raise HTTPException(
             status_code = status.HTTP_403_FORBIDDEN,
             detail = "You do not own this product"
-        )
-
-    except ProductInUseError:
-        raise HTTPException(
-            status_code = status.HTTP_409_CONFLICT,
-            detail = "Product is already referenced by past orders"
         )
 
     except Exception as e:
