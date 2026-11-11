@@ -1,0 +1,17 @@
+# env
+.env
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+
+# uv
+.uv/
+
+# IDE
+.vscode/
+.idea/
+
+# misc
+.DS_Store
